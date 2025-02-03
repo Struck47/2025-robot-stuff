@@ -39,19 +39,6 @@ public final class Constants
     public static final double WHEEL_LOCK_TIME = 10; // seconds
   }
 
-  public static final class HandConstants
-  {
-    public static final int handMotor1CanID = 12;
-
-    public static final double kP = 0.01; //0.3
-    public static final double kI = 0; //0.00001
-    public static final double kD = 0; //20
-    public static final double kIz = 0; 
-    public static final double kFF = 0; 
-    public static final double kMaxOutput = 1; 
-    public static final double kMinOutput = -0.5;
-  }
-
   public static class OperatorConstants
   {
 
@@ -60,5 +47,23 @@ public final class Constants
     public static final double LEFT_Y_DEADBAND = 0.1;
     public static final double RIGHT_X_DEADBAND = 0.1;
     public static final double TURN_CONSTANT    = 6;
+  }
+
+  public static class HandConstants
+  {
+    public static final int handMotor1CanID = 12;
+    public static final int handMotor2CanID = 13;
+
+    public static final double intakeOnSpeed = 0.25;
+    public static final double intakeSpinSpeed = 0.5;
+  }
+
+  public static class ElevatorConstants
+  {
+    public static final int elevatorMotor1CanID = 14;
+    public static final int elevatorMotor2CanID = 15;
+
+    public static final double minOutputElevator = 0.0;
+    public static final double maxOutputElevator = 1.0;
   }
 }
