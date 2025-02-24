@@ -1,3 +1,4 @@
+/* 
 package frc.robot.subsystems;
 
 //setting up sparkmax imports 
@@ -17,7 +18,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.HandConstants;
 
 public class HandSubsystem extends SubsystemBase {
-    /** Creates a new ExampleSubsystem. */
+    /** Creates a new ExampleSubsystem. 
     //private static final MotorType kMotorType = MotorType.kBrushless;
     //private int flip = -1;
   
@@ -43,14 +44,14 @@ public HandSubsystem() {
 
     midMotor = new SparkMax(HandConstants.handMotor2CanID, MotorType.kBrushless); 
 
-    lowMotor = new SparkMax(HandConstants.handMotor2CanID, MotorType.kBrushless); 
+    lowMotor = new SparkMax(HandConstants.handMotor3CanID, MotorType.kBrushless); 
 
 
 
         // configuration for motor 1
     topMotorConfig =
             new SparkMaxConfig()            //sets information for the overall motor
-                .inverted(false)
+                .inverted(HandConstants.invertAllMotors)
                 .idleMode(IdleMode.kBrake)
                 .apply(
                     new ClosedLoopConfig()  //sets information for the controller
@@ -66,7 +67,7 @@ public HandSubsystem() {
         // configuration for motor 2
     midMotorConfig =
             new SparkMaxConfig()            //sets information for the overall motor
-                .inverted(true)
+                .inverted(HandConstants.invertAllMotors)
                 .idleMode(IdleMode.kBrake)
                 .apply(
                     new ClosedLoopConfig()  //sets information for the controller
@@ -82,7 +83,7 @@ public HandSubsystem() {
         // configuration for motor 3
     lowMotorConfig =
             new SparkMaxConfig()            //sets information for the overall motor
-                .inverted(false)
+                .inverted(HandConstants.invertAllMotors)
                 .idleMode(IdleMode.kBrake)
                 .apply(
                     new ClosedLoopConfig()  //sets information for the controller
@@ -106,32 +107,34 @@ public HandSubsystem() {
     public Command intakeCoral()   //run motor at a constant speed
     {
         return this.run(() -> {
-            midMotor.set(HandConstants.intakeSpeed * HandConstants.inverted);
-            lowMotor.set(HandConstants.intakeSpeed * HandConstants.inverted);
+            midMotor.set(HandConstants.intakeSpeed);
+            lowMotor.set(-HandConstants.intakeSpeed);
         });
     }
 
     public Command OutputCoral()
     {
         return this.runOnce(() -> {
-            midMotor.set(-HandConstants.intakeSpeed * HandConstants.inverted);
-            lowMotor.set(-HandConstants.intakeSpeed * HandConstants.inverted);
+            midMotor.set(-HandConstants.intakeSpeed);
+            lowMotor.set(HandConstants.intakeSpeed);
         });
     }
 
     public Command intakeAlgae()
     {
         return this.run(() -> {
-            topMotor.set(HandConstants.intakeSpeed * HandConstants.inverted);
-            midMotor.set(HandConstants.intakeSpeed * HandConstants.inverted);
+            topMotor.set(HandConstants.intakeSpeed);
+            midMotor.set(-HandConstants.intakeSpeed);
         });
     }
 
     public Command outputAlgae()
     {
         return this.run(() -> {
-            topMotor.set(-HandConstants.intakeSpeed * HandConstants.inverted);
-            midMotor.set(-HandConstants.intakeSpeed * HandConstants.inverted);
+            topMotor.set(-HandConstants.intakeSpeed);
+            midMotor.set(HandConstants.intakeSpeed);
         });
     }
+
 }
+    */

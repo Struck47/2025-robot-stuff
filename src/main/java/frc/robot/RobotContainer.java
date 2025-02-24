@@ -25,8 +25,8 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
-import frc.robot.subsystems.ElevatorSubsystem;
-import frc.robot.subsystems.HandSubsystem;
+//import frc.robot.subsystems.ElevatorSubsystem;
+//import frc.robot.subsystems.HandSubsystem;
 import frc.robot.subsystems.ArmSubsystem;
 import java.io.File;
 import swervelib.SwerveInputStream;
@@ -51,8 +51,8 @@ public class RobotContainer
                                                                                 "swerve/neo"));
 
 
-  private final ElevatorSubsystem elevator = new ElevatorSubsystem(); 
-  private final HandSubsystem hand = new HandSubsystem();
+  //private final ElevatorSubsystem elevator = new ElevatorSubsystem(); 
+  //private final HandSubsystem hand = new HandSubsystem();
   private final ArmSubsystem arm = new ArmSubsystem();
 
   //set up auto chooser                                                                              
@@ -147,14 +147,35 @@ public class RobotContainer
     Command driveFieldOrientedAnglularVelocityKeyboard = drivebase.driveFieldOriented(driveAngularVelocityKeyboard);
     Command driveSetpointGenKeyboard = drivebase.driveWithSetpointGeneratorFieldRelative(
         driveDirectAngleKeyboard);
-
-      //Main drive command      
+     
+      //Main drive command - driver
       drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
 
-      //switch between front and back scoring
+     // driverXbox.rightTrigger().onTrue(elevator.lockElevator());
+
+     // driverXbox.leftTrigger().onTrue(elevator.unlockElevator());
+
+      //Home position command - operator
+      //driverXbox.a().whileTrue(arm.armDown());
+
+      //Ground position command - operator
+      //driverXbox.y().whileTrue(arm.armUp());
+
+
+      driverXbox.x().onTrue(arm.homeAngle());
+
+      driverXbox.b().onTrue(arm.groundAngle());
+
+     // driverXbox.povUp().whileTrue(elevator.elevatorUp());
+
+      //Ground position command - operator
+     // driverXbox.povDown().whileTrue(elevator.elevatorDown());
+
+      /* 
+      //switch between front and back scoring - operator
       operatorXbox.start().onTrue(arm.frontScore());
 
-      operatorXbox.y().onTrue(arm.backScore());
+      operatorXbox.button(7).onTrue(arm.backScore());
 
 
       //Coral Intake - operator
@@ -179,6 +200,12 @@ public class RobotContainer
           ParallelCommandGroup groundPosition = 
             new ParallelCommandGroup(elevator.groundHeight(), arm.groundAngle());
       operatorXbox.x().onTrue(groundPosition);
+            
+      //processor position command  - operator
+         ParallelCommandGroup processorPosition = 
+            new ParallelCommandGroup(elevator.processorHeight(), arm.processorAngle());
+      operatorXbox.y().onTrue(processorPosition);
+
 
       //Level 1 position command - operator
           ParallelCommandGroup level1Position = 
@@ -194,6 +221,7 @@ public class RobotContainer
           ParallelCommandGroup level3Position = 
             new ParallelCommandGroup(elevator.level3Height(), arm.level3Angle());
       operatorXbox.povUp().onTrue(level3Position);
+      */
   }
 
   /**

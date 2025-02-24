@@ -49,42 +49,75 @@ public final class Constants
     public static final double TURN_CONSTANT    = 6;
   }
 
-  public static class HandConstants
-  {
-    public static final int handMotor1CanID = 12;
-    public static final int handMotor2CanID = 13;
-
-    public static final double intakeSpeed = 0.25;
-
-    public static final double inverted = -1.0;
-  }
-
   public static class ElevatorConstants
   {
-    public static final int elevatorLeadMotorCanID = 14;        //ADD MARKING ON MOTOR AS TO WHICH IS WHICH
-    public static final int elevatorFollowMotor2CanID = 15;
+    //CAN IDs
+    public static final int elevatorLeadMotorCanID = 11;        //ADD MARKING ON MOTOR AS TO WHICH IS WHICH
+    public static final int elevatorFollowMotor2CanID = 12;
+    public static final int servoIDLeadSide = 0;
+    public static final int servoIDFollowSide = 1;
 
+    //Min/Max
     public static final double minOutputElevator = 0.0;
     public static final double maxOutputElevator = 1.0;
 
+    //Feedforward
+    public static final double kStaticGain = 0.0;
+    public static final double kGravity = 0.0;
+    public static final double kVelocity = 0.0;
+    public static final double kAccel = 0.0;
+
+    //Positions
     public static final double level3Height = 0.75;
     public static final double level2Height = 0.75;
     public static final double level1Height = 0.75;
     public static final double groundHeight = 0.75;
     public static final double homeHeight = 0.1;
+    public static final double processorHeight = 0;
 
+    //Lock/unlock Servo
+    public static final int servoFollowLock = 55;
+    public static final int servoFollowUnlock = 70;
+    public static final int servoLeaderLock = 0;
+    public static final int servoLeaderUnlock = 25;
+
+    //Motor Inversion
     public static final boolean leadMotorInverted = false;
-    public static final boolean followMotorInverted = true;
+    public static final boolean followMotorInverted = false;
+
+    //motor limits
+    public static final int stallLimit = 40;
+    public static final double maxAcceleration = 36000;
+    public static final double maxVelocity = 360;
+    public static final double allowedErr = 0.5;
+    
+    //motor config
+    public static final double P = 20;
+    public static final double I = 0;
+    public static final double D = 0.1;
+    public static final boolean inverted = true;
+
+    //motor conversion
+    public static final double positionConversionFactor = 360;
+    public static final double velocityConversionFactor = 360;
   }
 
   public static class ArmConstants
   {
-    public static final int armMotor1CanID = 16;
-    public static final int armMotor2CanID = 17;
+    //Constants for feedforward
+    public static final double kStaticGain = 0.0;
+    public static final double kGravity = 0.0;
+    public static final double kVelocity = 0.0;
+    public static final double kAccel = 0.0;
 
-    public static final double minOutputArm = 0.0;
+    //CAN IDs
+    public static final int armMotor1CanID = 13;
+
+    //Min/Max output
+    public static final double minOutputArm = -1.0;
     public static final double maxOutputArm = 1.0;
 
+    //Positions
     public static final double level3Angle = 0.75;
     public static final double level3BackAngle = -0.75;
 
@@ -94,9 +127,48 @@ public final class Constants
     public static final double level1Angle = 0.75;
     public static final double level1BackAngle = -0.75;
 
-    public static final double groundAngle = 0.75;
-    public static final double homeAngle = 0.1;
+    public static final double groundAngle = 0.2;
+    public static final double homeAngle = 0.9;
+    public static final double processorAngle = 0;
 
+    //inverting motor
     public static final boolean motorInvert = false;
+
+    //inverted encoder
+    public static final boolean inverted = true;
+    
+    //relative min and max arm angles
+    public static final double maxAngle = 180;
+    public static final double minAngle = 0;
+
+    //motor config
+    public static final int stallLimit = 40;
+    public static final double P = 20;
+    public static final double I = 0;
+    public static final double D = 0.1;
+
+    //motor limits
+    public static final double maxAcceleration = 36000;
+    public static final double maxVelocity = 360;
+    public static final double allowedError = 0.5;
+
+    //motor conversion
+    public static final double positionConversionFactor = 360;
+    public static final double velocityConversionFactor = 360;
+  }
+
+  public static class HandConstants
+  {
+    //CAN IDs
+    public static final int handMotor1CanID = 14;
+    public static final int handMotor2CanID = 15;
+    public static final int handMotor3CanID = 16;
+
+    //Intake Speed
+    public static final double intakeSpeed = 0.25;
+
+    //Motor inversion
+    public static final boolean invertAllMotors = true;    //All motors should be set to inverted but if this is incorrect change this.
   }
 }
+
